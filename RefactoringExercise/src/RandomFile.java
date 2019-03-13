@@ -53,7 +53,8 @@ public class RandomFile {
 	} // end method openFile
 
 	// Close file for adding or changing records
-	public void closeWriteFile() {
+	//Can now use this method for read and write files
+	public void closeFile() {
 		try // close file and exit
 		{
 			if (output != null)
@@ -145,18 +146,8 @@ public class RandomFile {
 		} // end catch
 	} // end method openFile
 
-	// Close file
-	public void closeReadFile() {
-		try // close file and exit
-		{
-			if (input != null)
-				input.close();
-		} // end try
-		catch (IOException ioException) {
-			JOptionPane.showMessageDialog(null, "Error closing file!");
-			System.exit(1);
-		} // end catch
-	} // end method closeFile
+	
+	
 
 	// Get position of first record in file
 	public long getFirst() {
