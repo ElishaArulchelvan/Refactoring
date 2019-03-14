@@ -559,8 +559,10 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end addRecord
 
 	// delete (make inactive - empty) record from file
-	private void deleteRecord() {
-		if (isSomeoneToDisplay()) {// if any active record in file display
+	private void deleteRecord() 
+	{
+		if (isSomeoneToDisplay()) 
+		{// if any active record in file display
 									// message and delete record
 			int returnVal = JOptionPane.showOptionDialog(frame, "Do you want to delete record?", "Delete",
 					JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
@@ -581,9 +583,10 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end deleteDecord
 
 	// create vector of vectors with all Employee details
-	private Vector<Object> getAllEmloyees() {
+	private Vector<Object> getAllEmloyees() 
+	{
 		// vector of Employee objects
-		Vector<Object> allEmployee = new Vector<Object>();
+		Vector<Object> allEmployee = new Vector<>();
 		Vector<Object> empDetails;// vector of each employee details
 		long byteStart = currentByteStart;
 		int firstId;
@@ -593,14 +596,14 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		// loop until all Employees are added to vector
 		do {
 			empDetails = new Vector<Object>();
-			empDetails.addElement(new Integer(currentEmployee.getEmployeeId()));
+			empDetails.addElement(currentEmployee.getEmployeeId());
 			empDetails.addElement(currentEmployee.getPps());
 			empDetails.addElement(currentEmployee.getSurname());
 			empDetails.addElement(currentEmployee.getFirstName());
-			empDetails.addElement(new Character(currentEmployee.getGender()));
+			empDetails.addElement(currentEmployee.getGender());
 			empDetails.addElement(currentEmployee.getDepartment());
-			empDetails.addElement(new Double(currentEmployee.getSalary()));
-			empDetails.addElement(new Boolean(currentEmployee.getFullTime()));
+			empDetails.addElement(currentEmployee.getSalary());
+			empDetails.addElement(currentEmployee.getFullTime());
 
 			allEmployee.addElement(empDetails);
 			nextRecord();// look for next record
@@ -775,12 +778,12 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end setToWhite
 
 	// enable text fields for editing
-	public void setEnabled(boolean booleanValue) {
+	public void setEnabled(boolean booleanValue) 
+	{
 		boolean search;
-		if (booleanValue)
-			search = false;
-		else
-			search = true;
+		
+		search= !booleanValue;
+		
 		ppsField.setEditable(booleanValue);
 		surnameField.setEditable(booleanValue);
 		firstNameField.setEditable(booleanValue);
@@ -970,8 +973,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			int index = (int) (rnd.nextFloat() * fileNameChars.length());
 			fileName.append(fileNameChars.charAt(index));
 		}
-		String generatedfileName = fileName.toString();
-		return generatedfileName;
+		return fileName.toString();
 	}// end getFileName
 
 	// create file with generated file name when application is opened
