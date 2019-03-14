@@ -303,8 +303,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 		searchByIdField.setText("");
 		searchBySurnameField.setText("");
-		// if Employee is null or ID is 0 do nothing else display Employee
-		// details
+		
 		if (thisEmployee == null || thisEmployee.getEmployeeId() == 0) {
 			//-------------------
 		//Changed this else if and to an or || 
@@ -628,12 +627,14 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private void cancelChange() {
 		setEnabled(false);
 		displayRecords(currentEmployee);
-	}// end cancelChange
+	}
 
 	// check if any of records in file is active - ID is not 0
-	private boolean isSomeoneToDisplay() {
-		boolean someoneToDisplay = false;
-		// open file for reading
+	private boolean isSomeoneToDisplay() 
+	{
+		//removed redundant initializer
+		boolean someoneToDisplay;
+		
 		application.openReadFile(file.getAbsolutePath());
 		// check if any of records in file is active - ID is not 0
 		someoneToDisplay = application.isSomeoneToDisplay();
@@ -652,11 +653,14 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			JOptionPane.showMessageDialog(null, "No Employees registered!");
 		}
 		return someoneToDisplay;
-	}// end isSomeoneToDisplay
+	}
 
 	// check for correct PPS format and look if PPS already in use
-	public boolean correctPps(String pps, long currentByte) {
-		boolean ppsExist = false;
+	public boolean correctPps(String pps, long currentByte) 
+	{
+		//removed redundant initializer
+		boolean ppsExist;
+		
 		// check for correct PPS format based on assignment description
 		if (pps.length() == 8 || pps.length() == 9) {
 			if (Character.isDigit(pps.charAt(0)) && Character.isDigit(pps.charAt(1))
@@ -680,7 +684,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end correctPPS
 
 	// check if file name has extension .dat
-	private boolean checkFileName(File fileName) {
+	private boolean checkFileName(File fileName) 
+	{
 		boolean checkFile = false;
 		int length = fileName.toString().length();
 
@@ -919,10 +924,12 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				if (file.getName().equals(generatedFileName))
 					file.delete();// delete file
 				file = newFile;// assign new file to file
-			} // end try
+			} 
 			catch (IOException e) {
-			} // end catch
-		} // end if
+				//fixed catch to display error message
+				System.out.println(e.getMessage());
+			} 
+		} 
 		changesMade = false;
 	}// end saveFileAs
 

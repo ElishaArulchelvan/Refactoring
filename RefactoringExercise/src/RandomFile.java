@@ -63,8 +63,8 @@ public class RandomFile {
 		catch (IOException ioException) {
 			JOptionPane.showMessageDialog(null, "Error closing file!");
 			System.exit(1);
-		} // end catch
-	} // end closeFile
+		} 
+	} 
 
 	// Add records to file
 	public long addRecords(Employee employeeToAdd) 
@@ -155,12 +155,14 @@ public class RandomFile {
 
 		try {// try to get file
 			input.length();
-		} // end try
+		} 
 		catch (IOException e) {
-		}// end catch
+			//fixed catch to display error message
+			System.out.println(e.getMessage());
+		}
 		
 		return byteToStart;
-	}// end getFirst
+	}
 
 	// Get position of last record in file
 	public long getLast() {
@@ -168,12 +170,14 @@ public class RandomFile {
 
 		try {// try to get position of last record
 			byteToStart = input.length() - RandomAccessEmployeeRecord.SIZE;
-		}// end try 
+		}
 		catch (IOException e) {
-		}// end catch
+			//fixed catch to display error message
+			System.out.println(e.getMessage());
+		}
 
 		return byteToStart;
-	}// end getFirst
+	}
 
 	// Get position of next record in file
 	public long getNext(long readFrom) {
@@ -186,13 +190,14 @@ public class RandomFile {
 				byteToStart = 0;
 			else
 				byteToStart = byteToStart + RandomAccessEmployeeRecord.SIZE;
-		} // end try
-		catch (NumberFormatException e) {
-		} // end catch
-		catch (IOException e) {
-		}// end catch
+		} 
+		catch (NumberFormatException | IOException e) {
+			//fixed catch to display error message
+			//and joined catch exceptions to shorten
+			System.out.println(e.getMessage());
+		} 
 		return byteToStart;
-	}// end getFirst
+	}
 
 	// Get position of previous record in file
 	public long getPrevious(long readFrom) {
@@ -206,24 +211,30 @@ public class RandomFile {
 			else
 				byteToStart = byteToStart - RandomAccessEmployeeRecord.SIZE;
 		} // end try
-		catch (NumberFormatException e) {
-		} // end catch
-		catch (IOException e) {
-		}// end catch
+		catch (NumberFormatException | IOException e) {
+		
+			//fixed catch to display error message
+			//and put the catch excpeptions together to shorten
+			System.out.println(e.getMessage());
+		} 
+		
 		return byteToStart;
-	}// end getPrevious
+	}
 
 	// Get object from file in specified position
 	public Employee readRecords(long byteToStart) 
 	{
-		Employee thisEmp = null;
+		//removed redundant initializer
+		Employee thisEmp;
 		RandomAccessEmployeeRecord record = new RandomAccessEmployeeRecord();
 
 		try {// try to read file and get record
 			input.seek(byteToStart);// Look for proper position in file
 			record.read(input);// Read record from file
-		} // end try
+		} 
 		catch (IOException e) {
+			//fixed catch to display error message
+			System.out.println(e.getMessage());
 		}
 		
 		thisEmp = record;
@@ -256,6 +267,8 @@ public class RandomFile {
 			}
 		} 
 		catch (IOException e) {
+			//fixed catch to display error message
+			System.out.println(e.getMessage());
 		}
 
 		return ppsExist;
@@ -276,10 +289,12 @@ public class RandomFile {
 				if (record.getEmployeeId() > 0)
 					someoneToDisplay = true;
 				currentByte = currentByte + RandomAccessEmployeeRecord.SIZE;
-			}// end while
-		}// end try
+			}
+		}
 		catch (IOException e) {
-		}// end catch
+			//fixed catch to display error message
+			System.out.println(e.getMessage());
+		}
 
 		return someoneToDisplay;
 	}// end isSomeoneToDisplay
