@@ -175,7 +175,8 @@ public class AddRecordDialog extends JDialog implements ActionListener
 	}// end checkInput
 
 	// set text field to white colour
-	public void setToWhite() {
+	public void setToWhite() 
+	{
 		ppsField.setBackground(Color.WHITE);
 		surnameField.setBackground(Color.WHITE);
 		firstNameField.setBackground(Color.WHITE);

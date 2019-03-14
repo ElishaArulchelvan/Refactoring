@@ -85,6 +85,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	String[] department = { "", "Administration", "Production", "Transport", "Management" };
 	// full time combo box values
 	String[] fullTime = { "", "Yes", "No" };
+	
+	String gp ="growx, pushx";
+	String wrap = "growx, pushx, wrap";
 
 	// initialize menu bar
 	private JMenuBar menuBar() {
@@ -231,30 +234,30 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 		empDetails.setBorder(BorderFactory.createTitledBorder("Employee Details"));
 
-		empDetails.add(new JLabel("ID:"), "growx, pushx");
-		empDetails.add(idField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("ID:"), gp);
+		empDetails.add(idField = new JTextField(20), wrap);
 		idField.setEditable(false);
 
-		empDetails.add(new JLabel("PPS Number:"), "growx, pushx");
-		empDetails.add(ppsField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("PPS Number:"), gp);
+		empDetails.add(ppsField = new JTextField(20), wrap);
 
-		empDetails.add(new JLabel("Surname:"), "growx, pushx");
-		empDetails.add(surnameField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Surname:"), gp);
+		empDetails.add(surnameField = new JTextField(20), wrap);
 
-		empDetails.add(new JLabel("First Name:"), "growx, pushx");
-		empDetails.add(firstNameField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("First Name:"), gp);
+		empDetails.add(firstNameField = new JTextField(20), wrap);
 
-		empDetails.add(new JLabel("Gender:"), "growx, pushx");
-		empDetails.add(genderCombo = new JComboBox<String>(gender), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Gender:"), gp);
+		empDetails.add(genderCombo = new JComboBox<String>(gender), wrap);
 
-		empDetails.add(new JLabel("Department:"), "growx, pushx");
-		empDetails.add(departmentCombo = new JComboBox<String>(department), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Department:"), gp);
+		empDetails.add(departmentCombo = new JComboBox<String>(department), wrap);
 
-		empDetails.add(new JLabel("Salary:"), "growx, pushx");
-		empDetails.add(salaryField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Salary:"), gp);
+		empDetails.add(salaryField = new JTextField(20), wrap);
 
-		empDetails.add(new JLabel("Full Time:"), "growx, pushx");
-		empDetails.add(fullTimeCombo = new JComboBox<String>(fullTime), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Full Time:"), gp);
+		empDetails.add(fullTimeCombo = new JComboBox<String>(fullTime), wrap);
 
 		buttonPanel.add(saveChange = new JButton("Save"));
 		saveChange.addActionListener(this);
@@ -688,13 +691,15 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	{
 		boolean checkFile = false;
 		int length = fileName.toString().length();
+		//Added String value for the file that is being checked
+		final String file = fileName.toString();
 
-		// check if last characters in file name is .dat
-		if (fileName.toString().charAt(length - 4) == '.' && fileName.toString().charAt(length - 3) == 'd'
-				&& fileName.toString().charAt(length - 2) == 'a' && fileName.toString().charAt(length - 1) == 't')
+		
+		if (file.charAt(length - 4) == '.' && file.charAt(length - 3) == 'd'
+				&& file.charAt(length - 2) == 'a' && file.charAt(length - 1) == 't')
 			checkFile = true;
 		return checkFile;
-	}// end checkFileName
+	}
 
 	// check if any changes text field where made
 	private boolean checkForChanges() {
@@ -773,14 +778,15 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 	// set text field background colour to white
 	private void setToWhite() {
-		ppsField.setBackground(UIManager.getColor("TextField.background"));
-		surnameField.setBackground(UIManager.getColor("TextField.background"));
-		firstNameField.setBackground(UIManager.getColor("TextField.background"));
-		salaryField.setBackground(UIManager.getColor("TextField.background"));
-		genderCombo.setBackground(UIManager.getColor("TextField.background"));
-		departmentCombo.setBackground(UIManager.getColor("TextField.background"));
-		fullTimeCombo.setBackground(UIManager.getColor("TextField.background"));
-	}// end setToWhite
+		
+		ppsField.setBackground(Color.WHITE);
+		surnameField.setBackground(Color.WHITE);
+		firstNameField.setBackground(Color.WHITE);
+		salaryField.setBackground(Color.WHITE);
+		genderCombo.setBackground(Color.WHITE);
+		departmentCombo.setBackground(Color.WHITE);
+		fullTimeCombo.setBackground(Color.WHITE);
+	}
 
 	// enable text fields for editing
 	public void setEnabled(boolean booleanValue) 
@@ -1073,11 +1079,11 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 		setJMenuBar(menuBar());// add menu bar to frame
 		// add search panel to frame
-		dialog.add(searchPanel(), "width 400:400:400, growx, pushx");
+		dialog.add(searchPanel(), "width 400:400:400," + gp);
 		// add navigation panel to frame
 		dialog.add(navigPanel(), "width 150:150:150, wrap");
 		// add button panel to frame
-		dialog.add(buttonPanel(), "growx, pushx, span 2,wrap");
+		dialog.add(buttonPanel(), gp+ "span 2,wrap");
 		// add details panel to frame
 		dialog.add(detailsPanel(), "gap top 30, gap left 150, center");
 
