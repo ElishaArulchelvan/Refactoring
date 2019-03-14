@@ -22,7 +22,8 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 
-public class AddRecordDialog extends JDialog implements ActionListener {
+public class AddRecordDialog extends JDialog implements ActionListener 
+{
 	JTextField idField, ppsField, surnameField, firstNameField, salaryField;
 	JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
 	JButton save, cancel;
@@ -46,39 +47,42 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	}// end AddRecordDialog
 
 	// initialize dialog container
-	public Container dialogPane() {
+	public Container dialogPane() 
+	{
 		JPanel empDetails, buttonPanel;
 		empDetails = new JPanel(new MigLayout());
 		buttonPanel = new JPanel();
 		JTextField field;
 
+		String gp = "growx, pushx";
+		String wrap = "growx, pushx, wrap";
 		empDetails.setBorder(BorderFactory.createTitledBorder("Employee Details"));
 
-		empDetails.add(new JLabel("ID:"), "growx, pushx");
-		empDetails.add(idField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("ID:"), gp);
+		empDetails.add(idField = new JTextField(20), wrap);
 		idField.setEditable(false);
 		
 
-		empDetails.add(new JLabel("PPS Number:"), "growx, pushx");
-		empDetails.add(ppsField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("PPS Number:"), gp);
+		empDetails.add(ppsField = new JTextField(20), wrap);
 
-		empDetails.add(new JLabel("Surname:"), "growx, pushx");
-		empDetails.add(surnameField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Surname:"), gp);
+		empDetails.add(surnameField = new JTextField(20), wrap);
 
-		empDetails.add(new JLabel("First Name:"), "growx, pushx");
-		empDetails.add(firstNameField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("First Name:"), gp);
+		empDetails.add(firstNameField = new JTextField(20), wrap);
 
-		empDetails.add(new JLabel("Gender:"), "growx, pushx");
-		empDetails.add(genderCombo = new JComboBox<String>(this.parent.gender), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Gender:"), gp);
+		empDetails.add(genderCombo = new JComboBox<String>(this.parent.gender), wrap);
 
-		empDetails.add(new JLabel("Department:"), "growx, pushx");
-		empDetails.add(departmentCombo = new JComboBox<String>(this.parent.department), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Department:"), gp);
+		empDetails.add(departmentCombo = new JComboBox<String>(this.parent.department), wrap);
 
-		empDetails.add(new JLabel("Salary:"), "growx, pushx");
-		empDetails.add(salaryField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Salary:"), gp);
+		empDetails.add(salaryField = new JTextField(20), wrap);
 
-		empDetails.add(new JLabel("Full Time:"), "growx, pushx");
-		empDetails.add(fullTimeCombo = new JComboBox<String>(this.parent.fullTime), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Full Time:"), gp);
+		empDetails.add(fullTimeCombo = new JComboBox<String>(this.parent.fullTime), wrap);
 
 		buttonPanel.add(save = new JButton("Save"));
 		save.addActionListener(this);
@@ -86,7 +90,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		buttonPanel.add(cancel = new JButton("Cancel"));
 		cancel.addActionListener(this);
 
-		empDetails.add(buttonPanel, "span 2,growx, pushx,wrap");
+		empDetails.add(buttonPanel, "span 2," + wrap);
 		// loop through all panel components and add fonts and listeners
 		for (int i = 0; i < empDetails.getComponentCount(); i++) {
 			empDetails.getComponent(i).setFont(this.parent.font1);
@@ -106,7 +110,8 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	}
 
 	// add record to file
-	public void addRecord() {
+	public void addRecord() 
+	{
 		boolean fullTime = false;
 		Employee theEmployee;
 

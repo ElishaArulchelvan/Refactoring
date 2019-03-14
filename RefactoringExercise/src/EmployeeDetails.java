@@ -800,7 +800,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end setEnabled
 
 	// open file
-	private void openFile() {
+	private void openFile() 
+	{
 		final JFileChooser fc = new JFileChooser();
 		fc.setDialogTitle("Open");
 		// display files in File Chooser only with extension .dat
@@ -968,13 +969,14 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		String fileNameChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_-";
 		StringBuilder fileName = new StringBuilder();
 		Random rnd = new Random();
-		// loop until 20 character long file name is generated
+		
 		while (fileName.length() < 20) {
 			int index = (int) (rnd.nextFloat() * fileNameChars.length());
 			fileName.append(fileNameChars.charAt(index));
 		}
+		//removed redundant local variable here
 		return fileName.toString();
-	}// end getFileName
+	}
 
 	// create file with generated file name when application is opened
 	private void createRandomFile() {
