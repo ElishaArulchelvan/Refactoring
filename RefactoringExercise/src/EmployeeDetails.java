@@ -147,33 +147,34 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end menuBar
 
 	// initialize search panel
-	private JPanel searchPanel() {
+	private JPanel searchPanel() 
+	{
 		JPanel searchPanel = new JPanel(new MigLayout());
 
 		searchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
-		searchPanel.add(new JLabel("Search by ID:"), "growx, pushx");
-		searchPanel.add(searchByIdField = new JTextField(20), "width 200:200:200, growx, pushx");
-		searchByIdField.addActionListener(this);
-		searchByIdField.setDocument(new JTextFieldLimit(20));
-		searchPanel.add(searchId = new JButton(new ImageIcon(
-				new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
-				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
-		searchId.addActionListener(this);
-		searchId.setToolTipText("Search Employee By ID");
-
-		searchPanel.add(new JLabel("Search by Surname:"), "growx, pushx");
-		searchPanel.add(searchBySurnameField = new JTextField(20), "width 200:200:200, growx, pushx");
-		searchBySurnameField.addActionListener(this);
-		searchBySurnameField.setDocument(new JTextFieldLimit(20));
-		searchPanel.add(
-				searchSurname = new JButton(new ImageIcon(new ImageIcon("imgres.png").getImage()
-						.getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
-				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
-		searchSurname.addActionListener(this);
-		searchSurname.setToolTipText("Search Employee By Surname");
+		
+		search(searchPanel, "ID");
+		search(searchPanel, "Surname");
 
 		return searchPanel;
-	}// end searchPanel
+	}
+	
+	public void search(JPanel searchPanel, String empDeet)
+	{
+		JTextField searchField;
+		JButton searchButton;
+		
+		searchPanel.add(new JLabel("Search by " + empDeet), "growx, pushx");
+		searchPanel.add(searchField = new JTextField(20), "width 200:200:200, growx, pushx");
+		searchField.addActionListener(this);
+		searchField.setDocument(new JTextFieldLimit(20));
+		searchPanel.add(searchButton = new JButton(new ImageIcon(
+				new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
+				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
+		searchButton.addActionListener(this);
+		searchButton.setToolTipText("Search Employee By" + empDeet);
+		
+	}
 
 	// initialize navigation panel
 	private JPanel navigPanel() {
@@ -808,7 +809,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		searchBySurnameField.setEnabled(search);
 		searchId.setEnabled(search);
 		searchSurname.setEnabled(search);
-	}// end setEnabled
+	}
 
 	// open file
 	private void openFile() 
@@ -1083,7 +1084,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		// add navigation panel to frame
 		dialog.add(navigPanel(), "width 150:150:150, wrap");
 		// add button panel to frame
-		dialog.add(buttonPanel(), gp+ "span 2,wrap");
+		dialog.add(buttonPanel(), "growx, pushx, span 2,wrap");
 		// add details panel to frame
 		dialog.add(detailsPanel(), "gap top 30, gap left 150, center");
 

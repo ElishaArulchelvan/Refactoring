@@ -23,23 +23,17 @@ public class RandomFile {
 		{
 			file = new RandomAccessFile(fileName, "rw");
 
-		} // end try
+		} 
 		catch (IOException ioException) {
 			JOptionPane.showMessageDialog(null, "Error processing file!");
 			System.exit(1);
 		} // end catch
 
 		finally {
-			try {
-				if (file != null)
-					file.close(); // close file
-			} // end try
-			catch (IOException ioException) {
-				JOptionPane.showMessageDialog(null, "Error closing file!");
-				System.exit(1);
-			} // end catch
-		} // end finally
-	} // end createFile
+			//Didnt need this code here
+			closeFile();
+		} 
+	} 
 
 	// Open file for adding or changing records
 	public void openWriteFile(String fileName) {
@@ -78,17 +72,15 @@ public class RandomFile {
 
 		try // output values to file
 		{
-			record = new RandomAccessEmployeeRecord(employeeToAdd.getEmployeeId(),employeeToAdd.getPps(),
-					employeeToAdd.getSurname(), employeeToAdd.getFirstName(), employeeToAdd.getGender(),
-					employeeToAdd.getDepartment(), employeeToAdd.getSalary(), employeeToAdd.getFullTime());
-
-			output.seek(output.length());// Look for proper position
-			record.write(output);// Write object to file
+			record = RandomAccessEmployeeRecord.getRandomAccessEmployeeRecord(employeeToAdd);
+			
+			output.seek(output.length());
+			record.write(output);
 			currentRecordStart = output.length();
-		} // end try
+		} 
 		catch (IOException ioException) {
 			JOptionPane.showMessageDialog(null, "Error writing to file!");
-		} // end catch
+		} 
 
 		return currentRecordStart - RandomAccessEmployeeRecord.SIZE;// Return
 																	// position
@@ -96,8 +88,9 @@ public class RandomFile {
 																	// object
 																	// starts in
 																	// the file
-	}// end addRecords
-
+	}
+	
+	
 	// Change details for existing object
 	public void changeRecords(Employee newDetails, long byteToStart) 
 	{

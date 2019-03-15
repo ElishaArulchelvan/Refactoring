@@ -77,5 +77,14 @@ public class RandomAccessEmployeeRecord extends Employee
 
       buffer.setLength( 20 );
       file.writeChars( buffer.toString() );
-   } // end writeName
-} // end class RandomAccessEmployeeRecord
+   } 
+   
+   public static RandomAccessEmployeeRecord getRandomAccessEmployeeRecord(Employee newEmployee)
+   {
+	   RandomAccessEmployeeRecord record;
+	   record = new RandomAccessEmployeeRecord(newEmployee.getEmployeeId(),newEmployee.getPps(),
+			   newEmployee.getSurname(), newEmployee.getFirstName(), newEmployee.getGender(),
+			   newEmployee.getDepartment(), newEmployee.getSalary(), newEmployee.getFullTime());
+	   return record;
+   }
+} 
