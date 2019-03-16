@@ -50,18 +50,18 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import net.miginfocom.swing.MigLayout;
 
 public class EmployeeDetails extends JFrame implements ActionListener, ItemListener, DocumentListener, WindowListener {
-	// decimal format for inactive currency text field
+	
 	private static final DecimalFormat format = new DecimalFormat("\u20ac ###,###,##0.00");
-	// decimal format for active currency text field
+	
 	private static final DecimalFormat fieldFormat = new DecimalFormat("0.00");
-	// hold object start position in file
+	
 	private long currentByteStart = 0;
 	private RandomFile application = new RandomFile();
-	// display files in File Chooser only with extension .dat
+	
 	private FileNameExtensionFilter datfilter = new FileNameExtensionFilter("dat files (*.dat)", "dat");
-	// hold file name and path for current file in use
+	
 	private File file;
-	// holds true or false if any changes are made for text fields
+	
 	private boolean change = false;
 	// holds true or false if any changes are made for file content
 	boolean changesMade = false;
@@ -144,8 +144,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		closeApp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.CTRL_MASK));
 
 		return menuBar;
-	}// end menuBar
-
+	}
 	// initialize search panel
 	private JPanel searchPanel() 
 	{
@@ -206,7 +205,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		last.setToolTipText("Display last Record");
 
 		return navigPanel;
-	}// end naviPanel
+	}
 
 	private JPanel buttonPanel() {
 		JPanel buttonPanel = new JPanel();
@@ -282,7 +281,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				else
 					field.setDocument(new JTextFieldLimit(20));
 				field.getDocument().addDocumentListener(this);
-			} // end if
+			} 
 			else if (empDetails.getComponent(i) instanceof JComboBox) {
 				empDetails.getComponent(i).setBackground(Color.WHITE);
 				empDetails.getComponent(i).setEnabled(false);
@@ -292,12 +291,12 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 					public void paint(Graphics g) {
 						setForeground(new Color(65, 65, 65));
 						super.paint(g);
-					}// end paint
+					}
 				});
-			} // end else if
-		} // end for
+			} 
+		}
 		return empDetails;
-	}// end detailsPanel
+	}
 
 	// display current Employee details
 	public void displayRecords(Employee thisEmployee) {
@@ -313,13 +312,13 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		//Changed this else if and to an or || 
 		
 		} else {
-			// find corresponding gender combo box value to current employee
+			
 			while (!found && countGender < gender.length - 1) {
 				if (Character.toString(thisEmployee.getGender()).equalsIgnoreCase(gender[countGender]))
 					found = true;
 				else
 					countGender++;
-			} // end while
+			} 
 			found = false;
 			// find corresponding department combo box value to current employee
 			while (!found && countDep < department.length - 1) {
@@ -327,7 +326,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 					found = true;
 				else
 					countDep++;
-			} // end while
+			} 
 			idField.setText(Integer.toString(thisEmployee.getEmployeeId()));
 			ppsField.setText(thisEmployee.getPps().trim());
 			surnameField.setText(thisEmployee.getSurname().trim());
@@ -342,21 +341,21 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				fullTimeCombo.setSelectedIndex(2);
 		}
 		change = false;
-	}// end display records
+	}
 
 	// display Employee summary dialog
 	private void displayEmployeeSummaryDialog() {
 		// display Employee summary dialog if these is someone to display
 		if (isSomeoneToDisplay())
 			new EmployeeSummaryDialog(getAllEmloyees());
-	}// end displaySummaryDialog
+	}
 
 	// display search by ID dialog
 	private void displaySearchByIdDialog() {
 		if (isSomeoneToDisplay())
 			new SearchByIdDialog(EmployeeDetails.this);
-	}// end displaySearchByIdDialog
-
+	}
+	
 	// display search by surname dialog
 	private void displaySearchBySurnameDialog() {
 		if (isSomeoneToDisplay())

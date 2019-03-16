@@ -20,7 +20,7 @@ public class RandomFile {
 	public void createFile(String fileName) {
 		RandomAccessFile file = null;
 
-		try // open file for reading and writing
+		try 
 		{
 			file = new RandomAccessFile(fileName, "rw");
 
@@ -28,8 +28,7 @@ public class RandomFile {
 		catch (IOException ioException) {
 			JOptionPane.showMessageDialog(null, "Error processing file!");
 			System.exit(1);
-		} // end catch
-
+		} 
 		finally {
 			//Didnt need this code here
 			closeFile();
