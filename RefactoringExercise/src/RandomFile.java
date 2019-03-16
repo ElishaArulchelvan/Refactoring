@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 public class RandomFile {
 	private RandomAccessFile output;
 	private RandomAccessFile input;
+	private static final String writingError = "Error writing to file!";
 
 	// Create new file
 	public void createFile(String fileName) {
@@ -79,7 +80,7 @@ public class RandomFile {
 			currentRecordStart = output.length();
 		} 
 		catch (IOException ioException) {
-			JOptionPane.showMessageDialog(null, "Error writing to file!");
+			JOptionPane.showMessageDialog(null, writingError);
 		} 
 
 		return currentRecordStart - RandomAccessEmployeeRecord.SIZE;// Return
@@ -107,7 +108,7 @@ public class RandomFile {
 			record.write(output);
 		} 
 		catch (IOException ioException) {
-			JOptionPane.showMessageDialog(null, "Error writing to file!");
+			JOptionPane.showMessageDialog(null, writingError);
 		} 
 	}
 
@@ -124,7 +125,7 @@ public class RandomFile {
 			record.write(output);
 		} 
 		catch (IOException ioException) {
-			JOptionPane.showMessageDialog(null, "Error writing to file!");
+			JOptionPane.showMessageDialog(null, writingError);
 		} 
 	}
 

@@ -3,15 +3,12 @@
 public class Employee
 {
 	private int employeeId;
-	private String pps;
-	private String surname;
-	private String firstName;
+	private String pps, surname, firstName, department;
 	private char gender;
-	private String department;
 	private double salary;
 	private boolean fullTime;
 
-	// Create Employee with no details
+
 	public Employee() 
 	{
 		this.employeeId = 0;
@@ -22,7 +19,7 @@ public class Employee
 		this.department = "";
 		this.salary = 0;
 		this.fullTime = false;
-	}//end Employee with no details
+	}
 
 	// Create Employee with details
 	public Employee(int employeeId, String pps, String surname, String firstName, char gender, String department, double salary,
